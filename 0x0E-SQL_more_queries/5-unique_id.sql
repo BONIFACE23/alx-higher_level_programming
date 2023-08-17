@@ -1,20 +1,6 @@
-#!/bin/bash
+-- creates the table unique_id on your MySQL server.
+CREATE TABLE IF NOT EXISTS unique_id (
+	id INT DEFAULT 1 UNIQUE,
+	name VARCHAR(256)
+	);
 
-# Check if the database name is provided as an argument
-if [ $# -ne 1 ]; then
-  echo "Usage: $0 <database_name>"
-  exit 1
-fi
-
-# Database name provided as an argument
-db_name="$1"
-
-# SQL script content
-sql_script="CREATE TABLE IF NOT EXISTS ${db_name}.unique_id (
-  id INT NOT NULL DEFAULT 1,
-  name VARCHAR(256),
-  UNIQUE (id)
-);"
-
-# Run the SQL script using the mysql command
-mysql -u root -p -e "$sql_script"
